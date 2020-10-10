@@ -30,7 +30,9 @@ defmodule Hinata.MixProject do
 
   defp package do
     [
-      files: ~w(lib priv .formatter.exs mix.exs README*)
+      files: ~w(lib .formatter.exs mix.exs README*),
+      licenses: ["Apache-2.0"],
+      links: %{"GitHub" => "https://github.com/teerawat1992/hinata"}
     ]
   end
 
