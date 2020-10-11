@@ -36,7 +36,7 @@ defmodule Hinata.JSONResponseHandler do
         {:error, maybe_cast_response_body(decoded_body, schema)}
 
       {:error, _} ->
-        {:error, %ErrorResponse{status_code: status_code, message: inspect(body)}}
+        {:error, %ErrorResponse{status_code: status_code, message: body}}
     end
   end
 
