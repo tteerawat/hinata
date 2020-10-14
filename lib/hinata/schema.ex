@@ -1,5 +1,5 @@
 defmodule Hinata.Schema do
-  @callback from_response_body!(map()) :: struct()
+  @callback from_response_body!(term()) :: struct()
 
   defmodule Error do
     defexception [:message]
@@ -7,7 +7,7 @@ defmodule Hinata.Schema do
 
   require Logger
 
-  @spec from_response_body!(map(), Keyword.t()) :: struct()
+  @spec from_response_body!(term(), Keyword.t()) :: struct()
   def from_response_body!(body, to: schema) do
     schema.from_response_body!(body)
   rescue
