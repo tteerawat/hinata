@@ -19,6 +19,7 @@ defmodule Hinata.JSONRequestBuilder do
     |> URI.merge(endpoint)
     |> set_query_params(query_params)
     |> URI.to_string()
+    |> URI.encode()
   end
 
   defp normalize_base_url(base_url) do
