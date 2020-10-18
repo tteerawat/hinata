@@ -16,11 +16,16 @@ defmodule Hinata.JSONRequestBuilder do
   defp build_url(base_url, endpoint, query_params) do
     base_url
     |> normalize_base_url()
-    |> URI.merge(endpoint)
+    |> merge_endpoint(endpoint)
     |> set_query_params(query_params)
-    |> URI.to_string()
-    |> URI.encode()
+    |> to_string()
   end
+
+  defp build_headers(nil), do: @json_headers
+  defp build_headers(headers) when is_list(headers), do: @json_headers ++ headers
+
+  defp build_json_body(nil), do: nil
+  defp build_json_body(%{} = body_params), do: Jason.encode!(body_params)
 
   defp normalize_base_url(base_url) do
     case URI.parse(base_url) do
@@ -29,11 +34,9 @@ defmodule Hinata.JSONRequestBuilder do
     end
   end
 
-  defp build_headers(nil), do: @json_headers
-  defp build_headers(headers) when is_list(headers), do: @json_headers ++ headers
-
-  defp build_json_body(nil), do: nil
-  defp build_json_body(%{} = body_params), do: Jason.encode!(body_params)
+  defp merge_endpoint(base_url, endpoint) do
+    URI.merge(base_url, URI.encode(endpoint))
+  end
 
   defp set_query_params(uri, nil), do: uri
   defp set_query_params(uri, %{} = query_params), do: %{uri | query: URI.encode_query(query_params)}
