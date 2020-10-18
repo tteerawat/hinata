@@ -1,5 +1,7 @@
 # Hinata
 
+![CI](https://github.com/teerawat1992/hinata/workflows/CI/badge.svg)
+
 An HTTP client for JSON API, built on top of [finch](https://github.com/keathley/finch).
 
 ## Installation
