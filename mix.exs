@@ -39,7 +39,7 @@ defmodule Hinata.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:bypass, "~> 1.0", only: :test},
+      {:bypass, "~> 2.0", only: :test},
       {:finch, "~> 0.4"},
       {:jason, "~> 1.0"}
     ]
